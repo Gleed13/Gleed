@@ -1,19 +1,27 @@
 public class Game {
-    private int[][] array = {{0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}};
+    private int[][] array = {
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0}
+};
 
     private Bot bot;
     private boolean vsAI;
     private int O;
     private int win = 0;
+    private int dif;
 //конструктор
-    public Game(boolean vsAI) {
+    public Game(boolean vsAI, int d) {
         this.vsAI = vsAI;
+        this.dif = d;
         O = (int)(1+Math.random()*2);
         if (vsAI) {
             bot = new Bot();
             if (O==2) {
-                putIn(bot.turn(array, O));
+                putIn(bot.turn(array, O, dif));
                 O = 1;
             }
         }
@@ -31,7 +39,7 @@ public class Game {
                 if (O==1) O = 2;
                 else O = 1;
                 if (vsAI) {
-                    putIn(bot.turn(array, O));
+                    putIn(bot.turn(array, O, dif));
                     if (isGameOver()) win = 2;
                     else if (isDraw()) win = 3;
                     else O = 1;
@@ -52,6 +60,7 @@ public class Game {
         O = o;
     }
 
+
     public int[][] getArray() {
         return array;
     }
@@ -61,7 +70,7 @@ public class Game {
         if (vsAI) {
             bot = new Bot();
             if (O==2) {
-                putIn(bot.turn(array, O));
+                putIn(bot.turn(array, O, dif));
                 O = 1;
             }
         }

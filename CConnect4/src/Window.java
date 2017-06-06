@@ -28,6 +28,9 @@ public class Window extends JFrame{
     private JButton options = new JButton("Options");
     private JButton vsPlayer = new JButton("vs Player");
     private JButton vsAi = new JButton("vs AI");
+    private JButton easy = new JButton("Easy");
+    private JButton normal = new JButton("Normal");
+    private JButton hard = new JButton("Hard");
     private JButton back1 = new JButton("back");
     private JButton back2 = new JButton("back");
     private JButton back3 = new JButton("menu");
@@ -38,9 +41,16 @@ public class Window extends JFrame{
 
 //игровые поля
     private boolean vsAI = false;
+    private int dif = 1;
 
-    private int[][] array = {{0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0}};
+    private int[][] array = {
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 0, 0, 0}
+    };
 
     private int mMovedX = 0;
     private int mMovedY = 0;
@@ -146,6 +156,21 @@ public class Window extends JFrame{
         vsAi.setBounds(296, 300, 201, 50);
         vsAi.setBackground(Color.WHITE);
         option.add(vsAi);
+
+        easy.setFont(f);
+        easy.setBounds(321, 360, 151, 40);
+        easy.setBackground(Color.WHITE);
+//        option.add(easy);
+
+        normal.setFont(f);
+        normal.setBounds(321, 410, 151, 40);
+        normal.setBackground(Color.GRAY);
+//        option.add(normal);
+
+        hard.setFont(f);
+        hard.setBounds(321, 460, 151, 40);
+        hard.setBackground(Color.WHITE);
+//        option.add(hard);
 
     //кнопки "назад" + "рестарт"
         back1.setFont(f);
@@ -292,12 +317,30 @@ public class Window extends JFrame{
     public void optionRemoveAI() {
         option.remove(ai);
     }
-
     public void optionAddPlayer() {
         option.add(pl);
     }
     public void optionRemovePlayer() {
         option.remove(pl);
+    }
+
+    public void optionAddEasy() {
+        option.add(easy);
+    }
+    public void optionRemoveEasy() {
+        option.remove(easy);
+    }
+    public void optionAddNormal() {
+        option.add(normal);
+    }
+    public void optionRemoveNormal() {
+        option.remove(normal);
+    }
+    public void optionAddHard() {
+        option.add(hard);
+    }
+    public void optionRemoveHard() {
+        option.remove(hard);
     }
 
     public void gameAddP2() {
@@ -346,6 +389,15 @@ public class Window extends JFrame{
     public JButton getVsPlayerButton() {
         return vsPlayer;
     }
+    public JButton getEasyButton() {
+        return easy;
+    }
+    public JButton getNormalButton() {
+        return normal;
+    }
+    public JButton getHardButton() {
+        return hard;
+    }
     public JButton getBack1Button() {
         return back1;
     }
@@ -369,6 +421,12 @@ public class Window extends JFrame{
     public void setVsAI(boolean b) {
         vsAI = b;
     }
+    public int getDif() {
+        return dif;
+    }
+    public void setDif(int d) {
+        dif = d;
+    }
 
     public void changeColors() {
         if (vsAI) {
@@ -378,6 +436,25 @@ public class Window extends JFrame{
         else {
             vsPlayer.setBackground(Color.GRAY);
             vsAi.setBackground(Color.WHITE);
+        }
+    }
+    public void changeColors2() {
+        switch (dif) {
+            case 0:
+                easy.setBackground(Color.GRAY);
+                normal.setBackground(Color.WHITE);
+                hard.setBackground(Color.WHITE);
+                break;
+            case 1:
+                easy.setBackground(Color.WHITE);
+                normal.setBackground(Color.GRAY);
+                hard.setBackground(Color.WHITE);
+                break;
+            case 2:
+                easy.setBackground(Color.WHITE);
+                normal.setBackground(Color.WHITE);
+                hard.setBackground(Color.GRAY);
+                break;
         }
     }
 

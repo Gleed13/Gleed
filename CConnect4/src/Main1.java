@@ -25,7 +25,7 @@ public class Main1 {
                 w.gameRemoveP2();
                 if (w.getVsAI()) w.gameAddAi();
                 else w.gameAddP2();
-                g = new Game(w.getVsAI());
+                g = new Game(w.getVsAI(), w.getDif());
                 w.setO(g.getO());
                 w.setArray(g.getArray());
                 w.setWin(0);
@@ -81,7 +81,7 @@ public class Main1 {
             public void actionPerformed(ActionEvent e) {
                 int b = JOptionPane.showConfirmDialog(null, "are you sure?", "restart the game", 0);
                 if (b==0) {
-                    g = new Game(w.getVsAI());
+                    g = new Game(w.getVsAI(), w.getDif());
                     w.gameRemoveWon1();
                     w.gameRemoveWon2();
                     w.setO(g.getO());
@@ -101,6 +101,9 @@ public class Main1 {
                     w.optionAddAI();
                     w.changeColors();
                     w.getStartButton().setText("Start PvAi");
+                    w.optionAddEasy();
+                    w.optionAddNormal();
+                    w.optionAddHard();
                     w.update();
                 }
             }
@@ -114,6 +117,39 @@ public class Main1 {
                     w.optionAddPlayer();
                     w.changeColors();
                     w.getStartButton().setText("Start PvP");
+                    w.optionRemoveEasy();
+                    w.optionRemoveNormal();
+                    w.optionRemoveHard();
+                    w.update();
+                }
+            }
+        });
+        w.getEasyButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (w.getDif() != 0) {
+                    w.setDif(0);
+                    w.changeColors2();
+                    w.update();
+                }
+            }
+        });
+        w.getNormalButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (w.getDif() != 1) {
+                    w.setDif(1);
+                    w.changeColors2();
+                    w.update();
+                }
+            }
+        });
+        w.getHardButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (w.getDif() != 2) {
+                    w.setDif(2);
+                    w.changeColors2();
                     w.update();
                 }
             }
